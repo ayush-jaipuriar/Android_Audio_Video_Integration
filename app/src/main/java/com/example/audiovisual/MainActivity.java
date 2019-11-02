@@ -36,8 +36,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         mediaController = new MediaController(MainActivity.this);
         mediaPlayer = MediaPlayer.create(this, R.raw.music);
         seekBar = findViewById(R.id.seekBar);
+
+
         //Since audioManager wants a systemService ,we pass it and typecast it to AudioManager
         audioManager = (AudioManager) getSystemService(AUDIO_SERVICE);
+        //audioManager.setStreamVolume(AudioManager.STREAM_MUSIC, 20, 0);
 
         //Each user's device may have a different maximum volume, so we need to access it
 
@@ -83,40 +86,51 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
             }
         });
+
+
+        playMusic.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mediaPlayer.start();
+                Log.i("myTag","Play Music Button is entered");
+
+            }
+        });
+
+        pauseMusic.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mediaPlayer.stop();
+
+            }
+        });
     }
+
+
+
+
 
     @Override
     public void onClick(View buttonView) {
 
 
-        switch (buttonView.getId()) {
-
-            case R.id.playMusic : {
-                mediaPlayer.start();
-                Log.i("myTag","Play Music Button is entered");
-                break; }
 
 
+        if  (buttonView.getId()== R.id.playMusic)
+            mediaPlayer.start();
+        else if (buttonView.getId() == R.id.pauseMusic)
+            mediaPlayer.stop();
 
-            case R.id.playVideo : {
-                Uri videoUri = Uri.parse("android.resource://"+ getPackageName() + "/"
-                        + R.raw.video);
-                videoView.setVideoURI(videoUri);
-                videoView.setMediaController(mediaController);
-                mediaController.setAnchorView(videoView);
-                videoView.start();
-                Log.i("video","Video case entered");
-                break;
-            }
-
-
-
-
-            case R.id.pauseMusic : {
-                mediaPlayer.stop();
-                break;
-            }
+        else if (buttonView.getId() == R.id.playVideo) {
+            Uri videoUri = Uri.parse("android.resource://" + getPackageName() + "/"
+                    + R.raw.video);
+            videoView.setVideoURI(videoUri);
+            videoView.setMediaController(mediaController);
+            mediaController.setAnchorView(videoView);
+            videoView.start();
+            Log.i("video", "Video case entered");
         }
+
 
 
     }
