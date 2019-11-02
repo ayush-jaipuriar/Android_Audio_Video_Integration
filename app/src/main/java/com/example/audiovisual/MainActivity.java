@@ -2,6 +2,7 @@ package com.example.audiovisual;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -23,7 +24,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     @Override
     public void onClick(View v) {
-        
+        Uri videoUri = Uri.parse("android.resource://"+ getPackageName() + "/"
+                        + R.raw.video);
+        videoView.setVideoURI(videoUri);
+        videoView.start();
+
 
     }
 }

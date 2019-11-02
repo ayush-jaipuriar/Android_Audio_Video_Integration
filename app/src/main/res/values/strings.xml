@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">Audio Visual</string>
+    <string name="buttonText">Play</string>
 </resources>
