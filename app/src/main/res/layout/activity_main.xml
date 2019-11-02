@@ -51,4 +51,25 @@
         android:text="Pause Music"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/playVideo" />
+
+    <SeekBar
+        android:id="@+id/seekBar"
+        android:layout_width="118dp"
+        android:layout_height="23dp"
+        android:layout_marginTop="20dp"
+        app:layout_constraintEnd_toStartOf="@+id/playMusic"
+        app:layout_constraintHorizontal_bias="0.458"
+        app:layout_constraintStart_toEndOf="@+id/pauseMusic"
+        app:layout_constraintTop_toBottomOf="@+id/textView" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="Change Volume"
+        app:layout_constraintEnd_toStartOf="@+id/playMusic"
+        app:layout_constraintHorizontal_bias="0.446"
+        app:layout_constraintStart_toEndOf="@+id/pauseMusic"
+        app:layout_constraintTop_toBottomOf="@+id/playVideo" />
 </androidx.constraintlayout.widget.ConstraintLayout>
