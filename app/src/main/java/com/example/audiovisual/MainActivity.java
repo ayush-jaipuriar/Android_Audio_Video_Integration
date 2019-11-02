@@ -6,12 +6,14 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.MediaController;
 import android.widget.VideoView;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
     VideoView videoView;
     Button button;
+    MediaController mediaController;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -20,6 +22,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         videoView = findViewById(R.id.videoView);
         button = findViewById(R.id.button);
         button.setOnClickListener(MainActivity.this);
+        mediaController = new MediaController(MainActivity.this);
     }
 
     @Override
@@ -27,6 +30,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         Uri videoUri = Uri.parse("android.resource://"+ getPackageName() + "/"
                         + R.raw.video);
         videoView.setVideoURI(videoUri);
+        videoView.setMediaController(mediaController);
+        mediaController.setAnchorView(videoView);
         videoView.start();
 
 
